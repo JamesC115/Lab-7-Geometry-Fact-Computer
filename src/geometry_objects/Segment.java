@@ -156,7 +156,12 @@ public class Segment extends GeometricObject
 	public boolean coincideWithoutOverlap(Segment that)
 	{
 		if (equals(that)) return false;
-		if ()
+		if (!isCollinearWith(that)) return false;
+		if (pointLiesBetweenEndpoints(that._point1)) return false;
+		if (pointLiesBetweenEndpoints(that._point1)) return false;
+		return true;
+		
+		
 	}
 	
 	/**
@@ -167,7 +172,9 @@ public class Segment extends GeometricObject
 	{
 		SortedSet<Point> pointsOn = new TreeSet<Point>();
 		
-		for (Point p: points) pointsOn.add(p);
+		for (Point p: points) {
+			if(pointLiesOnSegment(p)) pointsOn.add(p);
+		}
         // TODO
 
 		return pointsOn;
