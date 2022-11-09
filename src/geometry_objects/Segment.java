@@ -71,7 +71,11 @@ public class Segment extends GeometricObject
 
 	public boolean HasSubSegment(Segment candidate)
 	{
-        // TODO
+		
+		if(candidate.equals(this)){return true;}
+	    return this.pointLiesBetweenEndpoints(candidate.getPoint1()) &&
+	           this.pointLiesBetweenEndpoints(candidate.getPoint2());
+		
 	}
 
 	/**
