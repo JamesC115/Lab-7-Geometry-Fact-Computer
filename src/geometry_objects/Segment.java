@@ -158,10 +158,7 @@ public class Segment extends GeometricObject
 		if (equals(that)) return false;
 		if (!isCollinearWith(that)) return false;
 		if (pointLiesBetweenEndpoints(that._point1)) return false;
-		if (pointLiesBetweenEndpoints(that._point1)) return false;
-		return true;
-		
-		
+		return !(pointLiesBetweenEndpoints(that._point1));
 	}
 	
 	/**

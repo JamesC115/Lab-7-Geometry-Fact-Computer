@@ -20,9 +20,17 @@ public class ImplicitPointPreprocessor
 	 */
 	public static Set<Point> compute(PointDatabase givenPoints, List<Segment> givenSegments)
 	{
+		//seems very inefficient, talk to Dr.Alvin to try and resolve
+		
 		Set<Point> implicitPoints = new LinkedHashSet<Point>();
 
-        // TODO
+        for(Segment seg1: givenSegments) {
+        	for(Segment seg2: givenSegments) {
+        		if(seg1.segmentIntersection(seg2) != null) {
+        			implicitPoints.add(seg1.segmentIntersection(seg2));
+        		}
+        	}
+        }
 
 		return implicitPoints;
 	}
