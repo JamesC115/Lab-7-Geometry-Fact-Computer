@@ -105,11 +105,37 @@ public class Preprocessor
 	}
 	
 	public Set<Segment> identifyAllMinimalSegments(Set<Point> _implicitPoints, Set<Segment> _givenSegments, Set<Segment>_implicitSegments){
-		
+		Set<Segment> set = new HashSet<Segment>();
+		for(Segment s: _givenSegments) {
+			for(Segment s2: _givenSegments) {
+				if(s.pointLiesBetweenEndpoints(s2.getPoint1())) {
+					set.add(new Segment(s2.getPoint1(), s.getPoint1()));
+					set.add(new Segment(s2.getPoint2(), s.getPoint2()));
+				}
+				if(s.pointLiesBetweenEndpoints(s2.getPoint2())) {
+					set.add(new Segment(s2.getPoint1(), s.getPoint1()));
+					set.add(new Segment(s2.getPoint2(), s.getPoint2()));
+				}
+				
+			}
+		}
+		set.addAll(_implicitSegments);
+		return set;
 	}
 	
 	public Set<Segment> constructAllNonMinimalSegments(Set<Segment> _allMinimalSegments){
-		
+		Set<Segment> set = new HashSet<Segment>();
+		for(Segment s: _givenSegments) {
+			for(Segment s2: _givenSegments) {
+				
+				Point p = s.sharedVertex(s2);
+				if(s.isCollinearWith(s2)&& p != null)  {
+					set.add(new Segment(s.other(p), s2.other(p)));
+				}
+				
+			}
+		}
+		return set;
 	}
 
 }
